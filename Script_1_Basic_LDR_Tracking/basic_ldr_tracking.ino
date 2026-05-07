@@ -14,9 +14,9 @@ int servoPos = 90;
  
 // TUNING PARAMETERS
  
-int deadband = 5;    // Lowered for higher sensitivity
+int deadband = 20;    // Lowered for higher sensitivity
  
-float Kp = 0.05;      // Increased for more decisive movement
+float Kp = 0.1;      // Increased for more decisive movement
  
  
  
