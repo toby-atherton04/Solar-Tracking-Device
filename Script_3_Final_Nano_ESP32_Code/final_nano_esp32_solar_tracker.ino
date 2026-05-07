@@ -9,13 +9,13 @@ const int pinBR = A3; // Bottom Right
  
 // LDR pins are analogue inputs used to measure light intensity.
 // Servo pins are outputs used to control the horizontal and vertical movement.
-const int pinServHoriz = 9; // Horizontal (Yaw)
-const int pinServVert = 8;  // Vertical (Pitch)
+const int pinServHoriz = 9; // Horizontal
+const int pinServVert = 8;  // Vertical
 // Positions and Tuning
 float posHoriz = 90;
 float posVert = 90;
 int deadband = 40;     // Sensitivity gap
-float Kp = 0.005;      // Your preferred slow responsiveness
+float Kp = 0.005;      // speed
 int updateDelay = 30;  
 void setup() {
   Serial.begin(115200);
@@ -30,21 +30,24 @@ void setup() {
   Serial.println("4-LDR Smooth Mode Active");
 }
 void loop() {
-  // 1. Read all four sensors (using the 4095 inversion for brightness)
+  // 1. Read all four sensors
   int tl = 4095 - analogRead(pinTL);
   int bl = 4095 - analogRead(pinBL);
   int tr = 4095 - analogRead(pinTR);
   int br = 4095 - analogRead(pinBR);
+ 
   // 2. Calculate Averages
   int avgTop = (tl + tr) / 2;
   int avgBot = (bl + br) / 2;
   int avgLeft = (tl + bl) / 2;
   int avgRight = (tr + br) / 2;
+ 
   // 3. Calculate Errors
   // Horizontal uses Left vs Right
   int errorHoriz = avgLeft - avgRight; 
   // Vertical uses Bottom vs Top (Based on your working 3-LDR logic)
   int errorVert = avgBot - avgTop;
+ 
   // 4. Horizontal Movement (Yaw)
   if (abs(errorHoriz) > deadband) {
     posHoriz += (errorHoriz * Kp);
