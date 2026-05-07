@@ -25,8 +25,27 @@ The original script did not clearly define safe movement limits for the horizont
 **Change made:**  
 Minimum and maximum servo angles were added for both axes.
 
+**How it was tracked:**  
+The change was developed in a separate GitHub branch and committed with the message: "Add safe servo limits to dual-axis tracking script".
+
+## Change 3 — Updated Arduino Nano ESP32 pin assignments and comments
+
+**Script changed:** final_nano_esp32_solar_tracker.ino  
+**Branch used:** improve-script-3-pin-comments  
+
+**Reason for change:**  
+The code needed to be adapted for the Arduino Nano ESP32 board, as the input and output pins had to be clearly assigned for the LDR sensors and servo motors.
+
+**Change made:**  
+The pin definitions were updated and comments were added to explain the purpose of the LDR inputs, servo outputs, tuning values, and movement limits.
+
+**Impact of change:**  
+The final script became easier to understand, test, and debug. The comments also made it clearer how the hardware connections relate to the software.
+
+**How it was tracked:**  
+The update was committed in GitHub with the message: "Update Nano ESP32 pin assignments and code comments".
+
 **Impact of change:**  
 The code became safer and more reliable because the servo movement was constrained within a defined range.
 
-**How it was tracked:**  
-The change was developed in a separate GitHub branch and committed with the message: "Add safe servo limits to dual-axis tracking script".
+
